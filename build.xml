@@ -9,7 +9,7 @@
   depends="prepare,vendors,parameters,lint,phploc,pdepend,phpcpd,phpmd-ci,phpcs-ci,phpdoc,phpunit,phpcb"/>
   
   <target name="build2"
-  depends="prepare,vendors,lint,phpunit"/>
+  depends="prepare,vendors,cacheclear,lint,phpunit"/>
 
   <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
@@ -150,6 +150,33 @@
         <arg value="install"/>
         <arg value="--prefer-dist"/>
         <arg value="--optimize-autoloader"/>
+    </exec>
+  </target>
+  
+  <target name="cacheclear" description="Symfony2 Deployment Tasks">
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=prod" />
+        <arg value="cache:clear" />
+        <arg value="--no-optional-warmers" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=prod" />
+        <arg value="assets:install" />
+        <arg value="web" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=prod" />
+        <arg value="assetic:dump" />
+        <arg value="--force" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=prod" />
+        <arg value="doctrine:schema:update" />
+        <arg value="--force" />
     </exec>
   </target>
 
