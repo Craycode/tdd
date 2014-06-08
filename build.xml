@@ -145,10 +145,6 @@
         <arg value="composer.phar" />
         <arg value="selfupdate" />
     </exec>
-    <exec executable="rm" failonerror="false">
-        <arg value="composer.phar" />
-        <arg value="selfupdate" />
-    </exec>
     <exec executable="php" failonerror="true">
         <arg value="composer.phar"/>
         <arg value="install"/>
