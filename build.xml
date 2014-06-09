@@ -8,8 +8,11 @@
   <target name="build"
   depends="prepare,vendors,parameters,lint,phploc,pdepend,phpcpd,phpmd-ci,phpcs-ci,phpdoc,phpunit,phpcb"/>
   
-  <target name="build2"
+  <target name="build_prod"
   depends="prepare,parameters,vendors,cacheclear,lint,phpunit"/>
+  
+  <target name="build_dev"
+  depends="prepare,parameters,vendors,cacheclear_dev,lint,phpunit"/>
 
   <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
@@ -175,6 +178,33 @@
     <exec executable="php" failonerror="true">
         <arg value="app/console" />
         <arg value="--env=prod" />
+        <arg value="doctrine:schema:update" />
+        <arg value="--force" />
+    </exec>
+  </target>
+  
+  <target name="cacheclear_dev" description="Symfony2 Deployment Tasks DEV">
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=dev" />
+        <arg value="cache:clear" />
+        <arg value="--no-optional-warmers" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=dev" />
+        <arg value="assets:install" />
+        <arg value="web" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=dev" />
+        <arg value="assetic:dump" />
+        <arg value="--force" />
+    </exec>
+    <exec executable="php" failonerror="true">
+        <arg value="app/console" />
+        <arg value="--env=dev" />
         <arg value="doctrine:schema:update" />
         <arg value="--force" />
     </exec>
