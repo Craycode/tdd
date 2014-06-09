@@ -123,7 +123,7 @@
   </target>
 
   <target name="phpunit" description="Run unit tests with PHPUnit">
-    <exec executable="bin/phpunit.bat" failonerror="true">
+    <exec executable="bin/phpunit" failonerror="true">
       <arg value="-c" />
       <arg path="${basedir}/app/phpunit.xml" />
     </exec>
