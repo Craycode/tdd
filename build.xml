@@ -4,7 +4,7 @@
     <property name="workspace" value="${basedir}" />
     <property name="sourcedir" value="${basedir}/src" />
     <property name="builddir" value="${workspace}/app/build" />
-    <property name="appdir" value="${workspace}/app/build" />
+    <property name="appdir" value="${workspace}/app" />
     <property name="cachedir" value="${appdir}/cache" />
     <property name="logsdir" value="${appdir}/logs" />
 
@@ -184,8 +184,16 @@
             <arg value="doctrine:schema:update" />
             <arg value="--force" />
         </exec>
-        <chmod file="${cachedir}/**" perm="ugo+rwx" type="both"/>
-        <chmod file="${logsdir}/**" perm="ugo+rwx" type="both"/>
+        <exec executable="chmod" failonerror="false">
+            <arg value="-R"/>
+            <arg value="775"/>
+            <arg value="${cachedir}"/>
+        </exec>
+        <exec executable="chmod" failonerror="false">
+            <arg value="-R"/>
+            <arg value="775"/>
+            <arg value="${logsdir}"/>
+        </exec>
     </target>
   
     <target name="cacheclear_dev" description="Symfony2 Deployment Tasks DEV">
@@ -213,8 +221,16 @@
             <arg value="doctrine:schema:update" />
             <arg value="--force" />
         </exec>
-        <chmod file="${cachedir}/**" perm="ugo+rwx" type="both"/>
-        <chmod file="${logsdir}/**" perm="ugo+rwx" type="both"/>
+        <exec executable="chmod" failonerror="false">
+            <arg value="-R"/>
+            <arg value="775"/>
+            <arg value="${cachedir}"/>
+        </exec>
+        <exec executable="chmod" failonerror="false">
+            <arg value="-R"/>
+            <arg value="775"/>
+            <arg value="${logsdir}"/>
+        </exec>
     </target>
 
     <target name="parameters" description="Copy parameters">
