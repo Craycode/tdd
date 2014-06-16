@@ -186,12 +186,12 @@
         </exec>
         <exec executable="chmod" failonerror="false">
             <arg value="-R"/>
-            <arg value="775"/>
+            <arg value="777"/>
             <arg value="${cachedir}"/>
         </exec>
         <exec executable="chmod" failonerror="false">
             <arg value="-R"/>
-            <arg value="775"/>
+            <arg value="777"/>
             <arg value="${logsdir}"/>
         </exec>
     </target>
@@ -223,12 +223,12 @@
         </exec>
         <exec executable="chmod" failonerror="false">
             <arg value="-R"/>
-            <arg value="775"/>
+            <arg value="777"/>
             <arg value="${cachedir}"/>
         </exec>
         <exec executable="chmod" failonerror="false">
             <arg value="-R"/>
-            <arg value="775"/>
+            <arg value="777"/>
             <arg value="${logsdir}"/>
         </exec>
     </target>
