@@ -186,7 +186,7 @@
         </exec>
         <exec executable="chown" failonerror="false">
             <arg value="-R"/>
-            <arg value="www-data:www-data"/>
+            <arg value="jenkins:www-data"/>
             <arg value="${basedir}"/>
         </exec>
         <exec executable="chmod" failonerror="false">
@@ -228,7 +228,7 @@
         </exec>
         <exec executable="chown" failonerror="false">
             <arg value="-R"/>
-            <arg value="www-data:www-data"/>
+            <arg value="jenkins:www-data"/>
             <arg value="${basedir}"/>
         </exec>
         <exec executable="chmod" failonerror="false">
